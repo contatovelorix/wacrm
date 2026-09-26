@@ -1,49 +1,114 @@
-"use client"
+'use client';
 
-import Link from 'next/link'
-import { UserPlus, Briefcase, Radio, Zap } from 'lucide-react'
-import type { ComponentType } from 'react'
+import Link from 'next/link';
+import {
+  Bot,
+  BriefcaseBusiness,
+  CalendarDays,
+  MessageCircleMore,
+  Package,
+  Users,
+} from 'lucide-react';
+import type { ComponentType } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { useTranslations } from 'next-intl'
-
-// Quick-action shortcuts. Each navigates to the page that owns the
-// relevant "create" flow. We deliberately don't try to auto-open any
-// modal on the target page — that'd require touching those pages,
-// which is out of scope here.
 interface Action {
-  labelKey: string
-  href: string
-  icon: ComponentType<{ className?: string }>
-  tint: string
+  labelKey: string;
+  href?: string;
+  icon: ComponentType<{ className?: string }>;
+  tone: string;
 }
 
 const ACTIONS: Action[] = [
-  { labelKey: 'newContact', href: '/contacts', icon: UserPlus, tint: 'text-primary' },
-  { labelKey: 'newDeal', href: '/pipelines', icon: Briefcase, tint: 'text-blue-400' },
-  { labelKey: 'newBroadcast', href: '/broadcasts/new', icon: Radio, tint: 'text-amber-400' },
-  { labelKey: 'newAutomation', href: '/automations/new', icon: Zap, tint: 'text-primary' },
-]
+  {
+    labelKey: 'conversations',
+    href: '/inbox',
+    icon: MessageCircleMore,
+    tone: 'bg-emerald-50 text-emerald-700',
+  },
+  {
+    labelKey: 'clients',
+    href: '/contacts',
+    icon: Users,
+    tone: 'bg-sky-50 text-sky-700',
+  },
+  {
+    labelKey: 'deals',
+    href: '/pipelines',
+    icon: BriefcaseBusiness,
+    tone: 'bg-violet-50 text-violet-700',
+  },
+  {
+    labelKey: 'agenda',
+    icon: CalendarDays,
+    tone: 'bg-amber-50 text-amber-700',
+  },
+  { labelKey: 'catalog', icon: Package, tone: 'bg-rose-50 text-rose-700' },
+  {
+    labelKey: 'automations',
+    href: '/automations',
+    icon: Bot,
+    tone: 'bg-teal-50 text-teal-700',
+  },
+];
 
 export function QuickActions() {
-  const t = useTranslations('Dashboard.quickActions')
-  
+  const t = useTranslations('Dashboard.quickActions');
+
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-      {ACTIONS.map((a) => {
-        const Icon = a.icon
-        return (
-          <Link
-            key={a.href}
-            href={a.href}
-            className="group flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-border hover:bg-muted/60"
+    <section aria-labelledby="quick-actions-title">
+      <div className="mb-4 flex items-end justify-between">
+        <div>
+          <p className="text-primary text-xs font-semibold tracking-[0.16em] uppercase">
+            {t('eyebrow')}
+          </p>
+          <h2
+            id="quick-actions-title"
+            className="mt-1 text-xl font-semibold tracking-tight"
           >
-            <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-muted ${a.tint}`}>
-              <Icon className="h-4 w-4" />
+            {t('title')}
+          </h2>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-6 sm:gap-3">
+        {ACTIONS.map((action) => {
+          const Icon = action.icon;
+          const content = (
+            <>
+              <span
+                className={`flex size-11 items-center justify-center rounded-2xl ${action.tone}`}
+              >
+                <Icon className="size-5" aria-hidden />
+              </span>
+              <span className="text-foreground text-center text-xs font-semibold sm:text-sm">
+                {t(action.labelKey)}
+              </span>
+              {!action.href && (
+                <span className="text-muted-foreground text-[10px] font-medium">
+                  {t('soon')}
+                </span>
+              )}
+            </>
+          );
+          return action.href ? (
+            <Link
+              key={action.labelKey}
+              href={action.href}
+              className="group border-border/70 bg-card hover:border-primary/30 flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl border p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            >
+              {content}
+            </Link>
+          ) : (
+            <div
+              key={action.labelKey}
+              aria-disabled="true"
+              className="border-border bg-card/60 flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl border border-dashed p-3 opacity-75"
+            >
+              {content}
             </div>
-            <span className="text-sm font-medium text-foreground">{t(a.labelKey as string)}</span>
-          </Link>
-        )
-      })}
-    </div>
-  )
+          );
+        })}
+      </div>
+    </section>
+  );
 }

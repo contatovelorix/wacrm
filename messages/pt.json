@@ -56,7 +56,8 @@
     "defaultAvatar": "Avatar",
     "menuProfile": "Perfil",
     "menuSettings": "Configurações",
-    "menuSignOut": "Sair"
+    "menuSignOut": "Sair",
+    "search": "Buscar clientes"
   },
   "ModeToggle": {
     "switchMode": "Mudar para o modo {mode}"
@@ -71,7 +72,7 @@
   "Dashboard": {
     "page": {
       "title": "Painel",
-      "description": "Métricas ao vivo de conversas, contatos, negócios, disparos e automações.",
+      "description": "Tudo o que importa para você começar o dia com clareza.",
       "activeConversations": "Conversas ativas",
       "newContactsToday": "Novos contatos hoje",
       "openDealsValue": "Valor dos negócios abertos",
@@ -79,13 +80,30 @@
       "newTodayVsYesterday": "novos hoje vs. ontem",
       "vsYesterday": "vs. ontem",
       "openDeals": "{count} {count, plural, =1 {negócio aberto} other {negócios abertos}}",
-      "noChange": "Sem alteração {suffix}"
+      "noChange": "Sem alteração {suffix}",
+      "eyebrow": "Seu dia no FLOW",
+      "greeting": "Olá, {name}",
+      "defaultName": "por aí",
+      "dailySummary": "Resumo do dia",
+      "today": "Hoje",
+      "conversations": "Conversas",
+      "newClients": "Novos clientes",
+      "opportunities": "Oportunidades",
+      "appointments": "Agendamentos",
+      "integrationPending": "Integração futura",
+      "insights": "Visão do negócio",
+      "results": "Resultados e atividade"
     },
     "quickActions": {
-      "newContact": "Novo contato",
-      "newDeal": "Novo negócio",
-      "newBroadcast": "Novo disparo",
-      "newAutomation": "Nova automação"
+      "eyebrow": "Atalhos",
+      "title": "Ações rápidas",
+      "conversations": "Conversas",
+      "clients": "Clientes",
+      "deals": "Negócios",
+      "agenda": "Agenda",
+      "catalog": "Catálogo",
+      "automations": "Automações",
+      "soon": "Em breve"
     },
     "activityFeed": {
       "title": "Atividade recente",
@@ -131,6 +149,20 @@
     },
     "emptyState": {
       "title": "Ainda não há dados suficientes"
+    },
+    "attention": {
+      "eyebrow": "Prioridade",
+      "title": "Precisa da sua atenção",
+      "description": "Retome os pontos em aberto e mantenha seu fluxo avançando.",
+      "allClear": "Tudo em dia. Seu fluxo está sob controle.",
+      "conversations": "{count, plural, =1 {# conversa aberta} other {# conversas abertas}}",
+      "deals": "{count, plural, =1 {# negócio em andamento} other {# negócios em andamento}}"
+    },
+    "onlineBusiness": {
+      "title": "Seu negócio online",
+      "description": "Em breve, sua presença pública, serviços e canais estarão reunidos em um só lugar.",
+      "soon": "Em breve",
+      "preview": "Prévia da página FLOW"
     }
   },
   "Inbox": {
@@ -2026,5 +2058,12 @@
   },
   "DashboardShell": {
     "loading": "Carregando..."
+  },
+  "MobileNav": {
+    "label": "Navegação principal",
+    "today": "Hoje",
+    "conversations": "Conversas",
+    "clients": "Clientes",
+    "deals": "Negócios"
   }
 }
